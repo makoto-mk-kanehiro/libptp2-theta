@@ -1,0 +1,138 @@
+# libptp2 and ptpcam for RICOH THETA camera control with a USB cable
+
+More information is [here](https://theta360.guide/special/linuxstreaming/).
+
+
+## RICOH THETA Information
+
+### Installation 
+
+On Ubuntu 20.04 x86 and JetPack 4.4 NVIDIA Jetson.
+
+```
+$ sudo apt install libusb-dev
+$ cd theta_libptp2
+$ ./configure
+$ make
+$ sudo make install
+$ sudo ldconfig -v 
+
+``` 
+
+If the build fails, try the following.
+
+```
+$ autoreconf -i
+
+# if you don't have a build system installed, you may need some basic 
+# tools
+
+$ sudo apt install build-essential
+$ sudo apt install libtool
+$ sudo apt install automake
+...
+
+```
+
+[Original project page](http://libptp.sourceforge.net/).
+
+You may have better luck compiling
+with the original source code. 
+
+
+
+### Test with RICOH THETA
+
+Connect camera to computer with USB cable.  For most commands, the camera needs to be on,
+not in sleep mode.
+
+#### get camera info 
+
+```
+$ ptpcam --info
+
+Camera information
+==================
+Model: RICOH THETA V
+  manufacturer: Ricoh Company, Ltd.
+  serial number: '00105377'
+  device version: 3.40.1
+  extension ID: 0x00000006
+  extension description: (null)
+  extension version: 0x006e
+
+```
+
+#### Wake RICOH THETA from sleep
+
+```
+ ptpcam --set-property=0xD80E --val=0x00
+```
+
+#### Put Camera in Still Image Mode
+
+```
+$ ptpcam --set-property=0x5013 --val=0x0001
+
+Camera: RICOH THETA V
+'Still Capture Mode' is set to: 0x8005 (-32763)
+Changing property value to 0x0001 [(null)] succeeded.
+```
+
+#### Take Picture
+
+```
+$ ptpcam --capture
+
+Initiating captue...
+Object added 0x00000227
+Capture completed successfully!
+```
+
+#### List Devices 
+
+Only one device attached at the moment.   You can use this to get the
+device ID of a particular camera. 
+
+```
+$ ptpcam --list-devices
+
+Listing devices...
+bus/dev	vendorID/prodID	device model
+002/008	0x05CA/0x2714	RICOH THETA V
+```
+
+#### Put into live streaming mode
+
+```
+$ ptpcam --set-property=0x5013 --val=0x8005
+
+Camera: RICOH THETA V
+'Still Capture Mode' is set to: [Normal]
+Changing property value to 0x8005 [(null)] succeeded.
+``` 
+
+#### Put camera to sleep
+
+```
+ptpcam --set-property=0xd80e --val=0x01
+```
+
+#### List Files
+
+```
+$ ptpcam --list-files
+
+Listing files...
+Camera: RICOH THETA V
+Handler:           Size: 	Captured:      	name:
+0x00000142:      4152882	2020-06-17 20:59	R0010273.JPG
+0x00000143:      3979605	2020-06-17 21:03	R0010274.JPG
+```
+
+
+## Credit
+
+libptp2 (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
+ptpcam  (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
+
