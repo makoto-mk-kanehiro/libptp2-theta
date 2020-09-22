@@ -2,6 +2,9 @@
 
 More information is [here](https://theta360.guide/special/linuxstreaming/).
 
+This is based on ptpcam.
+
+[Original project page](http://libptp.sourceforge.net/).
 
 ## RICOH THETA Information
 
@@ -37,15 +40,7 @@ $ sudo apt install build-essential
 $ sudo apt install libtool
 $ sudo apt install automake
 ...
-
 ```
-
-[Original project page](http://libptp.sourceforge.net/).
-
-You may have better luck compiling
-with the original source code. 
-
-
 
 ### Test with RICOH THETA
 
@@ -66,8 +61,6 @@ Model: RICOH THETA Z1
   extension ID: 0x00000006
   image formats supported: 0x00000005
   extension version: 0x006e
-
-
 ```
 
 #### Wake RICOH THETA from sleep
@@ -79,7 +72,7 @@ Model: RICOH THETA Z1
 #### Put Camera in Still Image Mode
 
 ```
-$ ptpcam --set-property=0x5013 --val=0x0001
+$ theta --set-property=0x5013 --val=0x0001
 
 Camera: RICOH THETA V
 'Still Capture Mode' is set to: 0x8005 (-32763)
@@ -89,10 +82,10 @@ Changing property value to 0x0001 [(null)] succeeded.
 #### Take Picture
 
 ```
-$ ptpcam --capture
+$ theta --capture
 
-Initiating captue...
-Object added 0x00000227
+Initiating capture...
+Object added 0x00000017
 Capture completed successfully!
 ```
 
@@ -102,7 +95,7 @@ Only one device attached at the moment.   You can use this to get the
 device ID of a particular camera. 
 
 ```
-$ ptpcam --list-devices
+$ theta --list-devices
 
 Listing devices...
 bus/dev	vendorID/prodID	device model
@@ -112,7 +105,7 @@ bus/dev	vendorID/prodID	device model
 #### Put into live streaming mode
 
 ```
-$ ptpcam --set-property=0x5013 --val=0x8005
+$ theta --set-property=0x5013 --val=0x8005
 
 Camera: RICOH THETA V
 'Still Capture Mode' is set to: [Normal]
@@ -122,13 +115,13 @@ Changing property value to 0x8005 [(null)] succeeded.
 #### Put camera to sleep
 
 ```
-ptpcam --set-property=0xd80e --val=0x01
+theta --set-property=0xd80e --val=0x01
 ```
 
 #### List Files
 
 ```
-$ ptpcam --list-files
+$ theta --list-files
 
 Listing files...
 Camera: RICOH THETA V
