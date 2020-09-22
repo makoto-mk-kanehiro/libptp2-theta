@@ -941,15 +941,14 @@ ptp_ek_sendfileobject (PTPParams* params, char* object, uint32_t size)
  * **********************************************************************/
 
 uint16_t
-ptp_theta_sleep (PTPParams* params, char* object, uint32_t size)
+ptp_theta_sleepmode (PTPParams* params)
 {
 	PTPContainer ptp;
-
+	
 	PTP_CNT_INIT(ptp);
-	ptp.Code=PTP_OC_THETA_Sleep;
-	ptp.Nparam=0;
-
-	return ptp_transaction(params, &ptp, PTP_DP_SENDDATA, size, &object);
+	ptp.Code=PTP_OC_THETA_SleepMode;
+	ptp.Nparam=1;
+	return ptp_transaction(params, &ptp, PTP_DP_NODATA, 0, NULL);
 }
 
 /*************************************************************************
@@ -1686,7 +1685,7 @@ ptp_get_operation_name(PTPParams* params, uint16_t oc)
 		uint16_t oc;
 		const char *txt;
 	} ptp_operations_THETA[] = {
-		{PTP_OC_THETA_Sleep,	N_("THETA Sleep")},
+		{PTP_OC_THETA_SleepMode,	N_("THETA SleepMode")},
 		{0,NULL}
 	};
 

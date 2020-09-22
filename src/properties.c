@@ -116,7 +116,7 @@ static struct {
 	uint16_t dpc;
 	const char *txt;
 } ptp_device_properties_THETA[] = {
-	{PTP_DPC_THETA_Sleep,	N_("THETA Sleep")},
+	{PTP_DPC_THETA_SleepMode,	N_("THETA Sleep Mode")},
 	{0,NULL}
 };
 

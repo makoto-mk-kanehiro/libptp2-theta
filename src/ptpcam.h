@@ -143,8 +143,6 @@ void list_files (int busn, int devn, short force);
 void get_file (int busn, int devn, short force, uint32_t handle, char* filename, int overwrite);
 void get_all_files (int busn, int devn, short force, int overwrite);
 void capture_image (int busn, int devn, short force);
-void nikon_direct_capture (int busn, int devn, short force, char* filename, int overwrite);
-void nikon_direct_capture2 (int busn, int devn, short force, char* filename, int overwrite);
 void delete_object (int busn, int devn, short force, uint32_t handle);
 void delete_all_files (int busn, int devn, short force);
 void list_operations (int busn, int devn, short force);
