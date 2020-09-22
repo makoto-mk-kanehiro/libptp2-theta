@@ -11,6 +11,9 @@ On Ubuntu 20.04 x86 and JetPack 4.4 NVIDIA Jetson.
 
 ```
 $ sudo apt install libusb-dev
+$ sudo apt install automake-1.15  # on ubuntu 20.04
+or
+$ sudo apt install automake   # JetPack 4.4 or Ubuntu 18.04
 $ cd theta_libptp2
 $ ./configure
 $ make
@@ -23,6 +26,9 @@ If the build fails, try the following.
 
 ```
 $ autoreconf -i
+$ ./configure
+$ automake
+$ make
 
 # if you don't have a build system installed, you may need some basic 
 # tools

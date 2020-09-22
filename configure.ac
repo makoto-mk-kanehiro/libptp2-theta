@@ -1,6 +1,6 @@
 # Process this file with autoconf to produce a configure script.
 AC_INIT([libptp2],[1.2.0],[findmeontheweb@nosuchemail.com])
-AM_INIT_AUTOMAKE([1.16 -Wall -Werror foreign])
+AM_INIT_AUTOMAKE([1.15 -Wall -Werror foreign])
 AM_PROG_AR
 AC_PROG_LIBTOOL
 AC_PREREQ(2.69)
