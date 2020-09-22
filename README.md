@@ -133,6 +133,6 @@ Handler:           Size: 	Captured:      	name:
 
 ## Credit
 
-libptp2 (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
-ptpcam  (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
+* libptp2 (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
+* ptpcam  (c)2001-2006 Mariusz Woloszyn <emsi@ipartners.pl>
 
