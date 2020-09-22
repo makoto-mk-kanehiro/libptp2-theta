@@ -55,24 +55,25 @@ not in sleep mode.
 #### get camera info 
 
 ```
-$ ptpcam --info
+$ theta --info
 
-Camera information
+THETA Device Info
 ==================
-Model: RICOH THETA V
+Model: RICOH THETA Z1
   manufacturer: Ricoh Company, Ltd.
-  serial number: '00105377'
-  device version: 3.40.1
+  serial number: '10010104'
+  device version: 1.50.1
   extension ID: 0x00000006
-  extension description: (null)
+  image formats supported: 0x00000005
   extension version: 0x006e
+
 
 ```
 
 #### Wake RICOH THETA from sleep
 
 ```
- ptpcam --set-property=0xD80E --val=0x00
+ theta --set-property=0xD80E --val=0x00
 ```
 
 #### Put Camera in Still Image Mode

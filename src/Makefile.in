@@ -90,8 +90,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@PTPCAM_TRUE@bin_PROGRAMS = ptpcam$(EXEEXT)
-@PTPCAM_FALSE@ptpcam_DEPENDENCIES =
+@PTPCAM_TRUE@bin_PROGRAMS = theta$(EXEEXT)
+@PTPCAM_FALSE@theta_DEPENDENCIES =
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/byteorder.m4 \
@@ -148,15 +148,14 @@ am__v_lt_1 =
 libptp2_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libptp2_la_LDFLAGS) $(LDFLAGS) -o $@
-am__ptpcam_SOURCES_DIST = ptpcam.c ptpcam.h myusb.c
-@LINUX_OS_FALSE@@PTPCAM_TRUE@am_ptpcam_OBJECTS =  \
-@LINUX_OS_FALSE@@PTPCAM_TRUE@	ptpcam-ptpcam.$(OBJEXT)
-@LINUX_OS_TRUE@@PTPCAM_TRUE@am_ptpcam_OBJECTS =  \
-@LINUX_OS_TRUE@@PTPCAM_TRUE@	ptpcam-ptpcam.$(OBJEXT) \
-@LINUX_OS_TRUE@@PTPCAM_TRUE@	ptpcam-myusb.$(OBJEXT)
-ptpcam_OBJECTS = $(am_ptpcam_OBJECTS)
-ptpcam_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(ptpcam_CFLAGS) $(CFLAGS) \
+am__theta_SOURCES_DIST = ptpcam.c ptpcam.h myusb.c
+@LINUX_OS_FALSE@@PTPCAM_TRUE@am_theta_OBJECTS =  \
+@LINUX_OS_FALSE@@PTPCAM_TRUE@	theta-ptpcam.$(OBJEXT)
+@LINUX_OS_TRUE@@PTPCAM_TRUE@am_theta_OBJECTS = theta-ptpcam.$(OBJEXT) \
+@LINUX_OS_TRUE@@PTPCAM_TRUE@	theta-myusb.$(OBJEXT)
+theta_OBJECTS = $(am_theta_OBJECTS)
+theta_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(theta_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -174,7 +173,7 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/properties.Plo ./$(DEPDIR)/ptp.Plo \
-	./$(DEPDIR)/ptpcam-myusb.Po ./$(DEPDIR)/ptpcam-ptpcam.Po
+	./$(DEPDIR)/theta-myusb.Po ./$(DEPDIR)/theta-ptpcam.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -194,8 +193,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libptp2_la_SOURCES) $(ptpcam_SOURCES)
-DIST_SOURCES = $(libptp2_la_SOURCES) $(am__ptpcam_SOURCES_DIST)
+SOURCES = $(libptp2_la_SOURCES) $(theta_SOURCES)
+DIST_SOURCES = $(libptp2_la_SOURCES) $(am__theta_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -351,11 +350,11 @@ libptp2_la_LDFLAGS = -version-info @LIBPTP2_VERSION_INFO@
 libptp2includedir = $(includedir)/libptp2
 libptp2include_HEADERS = ptp.h libptp-endian.h libptp-stdint.h
 DISTCLEANFILES = libptp-stdint.h libptp-endian.h
-@LINUX_OS_FALSE@@PTPCAM_TRUE@ptpcam_SOURCES = ptpcam.c ptpcam.h
-@LINUX_OS_TRUE@@PTPCAM_TRUE@ptpcam_SOURCES = ptpcam.c ptpcam.h myusb.c
-@PTPCAM_TRUE@ptpcam_LDADD = -lptp2 @PTPCAM_LDFLAGS@
-@PTPCAM_TRUE@ptpcam_DEPENDENCIES = libptp2.la
-@PTPCAM_TRUE@ptpcam_CFLAGS = @PTPCAM_CFLAGS@
+@LINUX_OS_FALSE@@PTPCAM_TRUE@theta_SOURCES = ptpcam.c ptpcam.h
+@LINUX_OS_TRUE@@PTPCAM_TRUE@theta_SOURCES = ptpcam.c ptpcam.h myusb.c
+@PTPCAM_TRUE@theta_LDADD = -lptp2 @PTPCAM_LDFLAGS@
+@PTPCAM_TRUE@theta_DEPENDENCIES = libptp2.la
+@PTPCAM_TRUE@theta_CFLAGS = @PTPCAM_CFLAGS@
 all: all-am
 
 .SUFFIXES:
@@ -477,9 +476,9 @@ clean-libLTLIBRARIES:
 libptp2.la: $(libptp2_la_OBJECTS) $(libptp2_la_DEPENDENCIES) $(EXTRA_libptp2_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libptp2_la_LINK) -rpath $(libdir) $(libptp2_la_OBJECTS) $(libptp2_la_LIBADD) $(LIBS)
 
-ptpcam$(EXEEXT): $(ptpcam_OBJECTS) $(ptpcam_DEPENDENCIES) $(EXTRA_ptpcam_DEPENDENCIES) 
-	@rm -f ptpcam$(EXEEXT)
-	$(AM_V_CCLD)$(ptpcam_LINK) $(ptpcam_OBJECTS) $(ptpcam_LDADD) $(LIBS)
+theta$(EXEEXT): $(theta_OBJECTS) $(theta_DEPENDENCIES) $(EXTRA_theta_DEPENDENCIES) 
+	@rm -f theta$(EXEEXT)
+	$(AM_V_CCLD)$(theta_LINK) $(theta_OBJECTS) $(theta_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -489,8 +488,8 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/properties.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ptp.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ptpcam-myusb.Po@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ptpcam-ptpcam.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/theta-myusb.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/theta-ptpcam.Po@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -519,33 +518,33 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-ptpcam-ptpcam.o: ptpcam.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -MT ptpcam-ptpcam.o -MD -MP -MF $(DEPDIR)/ptpcam-ptpcam.Tpo -c -o ptpcam-ptpcam.o `test -f 'ptpcam.c' || echo '$(srcdir)/'`ptpcam.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ptpcam-ptpcam.Tpo $(DEPDIR)/ptpcam-ptpcam.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ptpcam.c' object='ptpcam-ptpcam.o' libtool=no @AMDEPBACKSLASH@
+theta-ptpcam.o: ptpcam.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -MT theta-ptpcam.o -MD -MP -MF $(DEPDIR)/theta-ptpcam.Tpo -c -o theta-ptpcam.o `test -f 'ptpcam.c' || echo '$(srcdir)/'`ptpcam.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/theta-ptpcam.Tpo $(DEPDIR)/theta-ptpcam.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ptpcam.c' object='theta-ptpcam.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -c -o ptpcam-ptpcam.o `test -f 'ptpcam.c' || echo '$(srcdir)/'`ptpcam.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -c -o theta-ptpcam.o `test -f 'ptpcam.c' || echo '$(srcdir)/'`ptpcam.c
 
-ptpcam-ptpcam.obj: ptpcam.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -MT ptpcam-ptpcam.obj -MD -MP -MF $(DEPDIR)/ptpcam-ptpcam.Tpo -c -o ptpcam-ptpcam.obj `if test -f 'ptpcam.c'; then $(CYGPATH_W) 'ptpcam.c'; else $(CYGPATH_W) '$(srcdir)/ptpcam.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ptpcam-ptpcam.Tpo $(DEPDIR)/ptpcam-ptpcam.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ptpcam.c' object='ptpcam-ptpcam.obj' libtool=no @AMDEPBACKSLASH@
+theta-ptpcam.obj: ptpcam.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -MT theta-ptpcam.obj -MD -MP -MF $(DEPDIR)/theta-ptpcam.Tpo -c -o theta-ptpcam.obj `if test -f 'ptpcam.c'; then $(CYGPATH_W) 'ptpcam.c'; else $(CYGPATH_W) '$(srcdir)/ptpcam.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/theta-ptpcam.Tpo $(DEPDIR)/theta-ptpcam.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='ptpcam.c' object='theta-ptpcam.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -c -o ptpcam-ptpcam.obj `if test -f 'ptpcam.c'; then $(CYGPATH_W) 'ptpcam.c'; else $(CYGPATH_W) '$(srcdir)/ptpcam.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -c -o theta-ptpcam.obj `if test -f 'ptpcam.c'; then $(CYGPATH_W) 'ptpcam.c'; else $(CYGPATH_W) '$(srcdir)/ptpcam.c'; fi`
 
-ptpcam-myusb.o: myusb.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -MT ptpcam-myusb.o -MD -MP -MF $(DEPDIR)/ptpcam-myusb.Tpo -c -o ptpcam-myusb.o `test -f 'myusb.c' || echo '$(srcdir)/'`myusb.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ptpcam-myusb.Tpo $(DEPDIR)/ptpcam-myusb.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='myusb.c' object='ptpcam-myusb.o' libtool=no @AMDEPBACKSLASH@
+theta-myusb.o: myusb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -MT theta-myusb.o -MD -MP -MF $(DEPDIR)/theta-myusb.Tpo -c -o theta-myusb.o `test -f 'myusb.c' || echo '$(srcdir)/'`myusb.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/theta-myusb.Tpo $(DEPDIR)/theta-myusb.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='myusb.c' object='theta-myusb.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -c -o ptpcam-myusb.o `test -f 'myusb.c' || echo '$(srcdir)/'`myusb.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -c -o theta-myusb.o `test -f 'myusb.c' || echo '$(srcdir)/'`myusb.c
 
-ptpcam-myusb.obj: myusb.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -MT ptpcam-myusb.obj -MD -MP -MF $(DEPDIR)/ptpcam-myusb.Tpo -c -o ptpcam-myusb.obj `if test -f 'myusb.c'; then $(CYGPATH_W) 'myusb.c'; else $(CYGPATH_W) '$(srcdir)/myusb.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/ptpcam-myusb.Tpo $(DEPDIR)/ptpcam-myusb.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='myusb.c' object='ptpcam-myusb.obj' libtool=no @AMDEPBACKSLASH@
+theta-myusb.obj: myusb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -MT theta-myusb.obj -MD -MP -MF $(DEPDIR)/theta-myusb.Tpo -c -o theta-myusb.obj `if test -f 'myusb.c'; then $(CYGPATH_W) 'myusb.c'; else $(CYGPATH_W) '$(srcdir)/myusb.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/theta-myusb.Tpo $(DEPDIR)/theta-myusb.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='myusb.c' object='theta-myusb.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(ptpcam_CFLAGS) $(CFLAGS) -c -o ptpcam-myusb.obj `if test -f 'myusb.c'; then $(CYGPATH_W) 'myusb.c'; else $(CYGPATH_W) '$(srcdir)/myusb.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(theta_CFLAGS) $(CFLAGS) -c -o theta-myusb.obj `if test -f 'myusb.c'; then $(CYGPATH_W) 'myusb.c'; else $(CYGPATH_W) '$(srcdir)/myusb.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -707,8 +706,8 @@ clean-am: clean-binPROGRAMS clean-generic clean-libLTLIBRARIES \
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/properties.Plo
 	-rm -f ./$(DEPDIR)/ptp.Plo
-	-rm -f ./$(DEPDIR)/ptpcam-myusb.Po
-	-rm -f ./$(DEPDIR)/ptpcam-ptpcam.Po
+	-rm -f ./$(DEPDIR)/theta-myusb.Po
+	-rm -f ./$(DEPDIR)/theta-ptpcam.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -756,8 +755,8 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/properties.Plo
 	-rm -f ./$(DEPDIR)/ptp.Plo
-	-rm -f ./$(DEPDIR)/ptpcam-myusb.Po
-	-rm -f ./$(DEPDIR)/ptpcam-ptpcam.Po
+	-rm -f ./$(DEPDIR)/theta-myusb.Po
+	-rm -f ./$(DEPDIR)/theta-ptpcam.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

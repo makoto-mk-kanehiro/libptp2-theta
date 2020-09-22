@@ -934,6 +934,24 @@ ptp_ek_sendfileobject (PTPParams* params, char* object, uint32_t size)
 	return ptp_transaction(params, &ptp, PTP_DP_SENDDATA, size, &object);
 }
 
+
+/*************************************************************************
+ * RICOH THETA extension support
+ * 
+ * **********************************************************************/
+
+uint16_t
+ptp_theta_sleep (PTPParams* params, char* object, uint32_t size)
+{
+	PTPContainer ptp;
+
+	PTP_CNT_INIT(ptp);
+	ptp.Code=PTP_OC_THETA_Sleep;
+	ptp.Nparam=0;
+
+	return ptp_transaction(params, &ptp, PTP_DP_SENDDATA, size, &object);
+}
+
 /*************************************************************************
  *
  * Canon PTP extensions support
@@ -1667,6 +1685,15 @@ ptp_get_operation_name(PTPParams* params, uint16_t oc)
 	static struct {
 		uint16_t oc;
 		const char *txt;
+	} ptp_operations_THETA[] = {
+		{PTP_OC_THETA_Sleep,	N_("THETA Sleep")},
+		{0,NULL}
+	};
+
+
+	static struct {
+		uint16_t oc;
+		const char *txt;
 	} ptp_operations_CANON[] = {
 		{PTP_OC_CANON_GetObjectSize,	N_("CANON GetObjectSize")},
 		{PTP_OC_CANON_StartShootingMode,N_("CANON StartShootingMode")},
@@ -1703,6 +1730,11 @@ ptp_get_operation_name(PTPParams* params, uint16_t oc)
 				if (ptp_operations_EK[i].oc==oc)
 					return (ptp_operations_EK[i].txt);
 			break;
+		case PTP_VENDOR_THETA:
+			for (i=0; ptp_operations_THETA[i].txt!=NULL; i++)
+				if (ptp_operations_THETA[i].oc==oc)
+					return (ptp_operations_THETA[i].txt);
+			break;			
 
 		case PTP_VENDOR_CANON:
 			for (i=0; ptp_operations_CANON[i].txt!=NULL; i++)

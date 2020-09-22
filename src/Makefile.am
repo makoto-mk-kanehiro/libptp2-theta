@@ -10,14 +10,16 @@ libptp2include_HEADERS = ptp.h libptp-endian.h libptp-stdint.h
 
 DISTCLEANFILES = libptp-stdint.h libptp-endian.h
 
+# changed name from ptpcam to make it clear
+# we are using a modified program
 if PTPCAM
-bin_PROGRAMS = ptpcam
+bin_PROGRAMS = theta
 if LINUX_OS
-ptpcam_SOURCES = ptpcam.c ptpcam.h myusb.c
+theta_SOURCES = ptpcam.c ptpcam.h myusb.c
 else 
-ptpcam_SOURCES = ptpcam.c ptpcam.h
+theta_SOURCES = ptpcam.c ptpcam.h
 endif
-ptpcam_LDADD = -lptp2 @PTPCAM_LDFLAGS@
-ptpcam_DEPENDENCIES = libptp2.la
-ptpcam_CFLAGS = @PTPCAM_CFLAGS@
+theta_LDADD = -lptp2 @PTPCAM_LDFLAGS@
+theta_DEPENDENCIES = libptp2.la
+theta_CFLAGS = @PTPCAM_CFLAGS@
 endif

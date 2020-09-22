@@ -110,6 +110,7 @@ typedef struct _PTPUSBEventContainer PTPUSBEventContainer;
 #define PTP_VENDOR_STMICROELECTRONICS	0x00000009
 #define PTP_VENDOR_NIKON		0x0000000A
 #define PTP_VENDOR_CANON		0x0000000B
+#define PTP_VENDOR_THETA		0x0000000C
 
 /* Transaction data phase description */
 #define PTP_DP_NODATA		0x0000	/* no data phase */
@@ -151,6 +152,10 @@ typedef struct _PTPUSBEventContainer PTPUSBEventContainer;
 /* Eastman Kodak extension Operation Codes */
 #define PTP_OC_EK_SendFileObjectInfo	0x9005
 #define PTP_OC_EK_SendFileObject	0x9006
+
+/* RICOH THETA extension Operation Codes */
+#define PTP_OC_THETA_Sleep 				0xD80E
+
 /* Canon extension Operation Codes */
 #define PTP_OC_CANON_GetObjectSize	0x9001
 #define PTP_OC_CANON_StartShootingMode	0x9008
@@ -580,6 +585,9 @@ typedef struct _PTPCANONFolderEntry PTPCANONFolderEntry;
 #define PTP_DPC_CANON_AssistLight	0xD041
 #define PTP_DPC_CANON_D045		0xD045
 
+/* RICOH THETA device property codes */
+#define PTP_DPC_THETA_Sleep		0xD80E
+
 /* Nikon extension device property codes */
 #define PTP_DPC_NIKON_ShootingBank			0xD010
 #define PTP_DPC_NIKON_ShootingBankNameA 		0xD011
@@ -845,7 +853,13 @@ uint16_t ptp_ek_sendfileobjectinfo (PTPParams* params, uint32_t* store,
 				PTPObjectInfo* objectinfo);
 uint16_t ptp_ek_sendfileobject	(PTPParams* params, char* object,
 				uint32_t size);
-				
+
+/* THETA extensions */
+
+uint16_t ptp_theta_sleep	(PTPParams* params, char* object,
+				uint32_t size);
+
+
 /* Canon PTP extensions */
 
 uint16_t ptp_canon_getobjectsize (PTPParams* params, uint32_t handle,

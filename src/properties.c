@@ -115,6 +115,14 @@ static struct {
 static struct {
 	uint16_t dpc;
 	const char *txt;
+} ptp_device_properties_THETA[] = {
+	{PTP_DPC_THETA_Sleep,	N_("THETA Sleep")},
+	{0,NULL}
+};
+
+static struct {
+	uint16_t dpc;
+	const char *txt;
 } ptp_device_properties_CANON[] = {
 	{PTP_DPC_CANON_BeepMode,	N_("CANON Beep Mode")},
 	{PTP_DPC_CANON_UnixTime,	N_("CANON Time measured in"
@@ -271,6 +279,11 @@ ptp_prop_getname(PTPParams* params, uint16_t dpc)
 			for (i=0; ptp_device_properties_EK[i].txt!=NULL; i++)
 				if (ptp_device_properties_EK[i].dpc==dpc)
 					return (ptp_device_properties_EK[i].txt);
+			break;
+		case PTP_VENDOR_THETA:
+			for (i=0; ptp_device_properties_THETA[i].txt!=NULL; i++)
+				if (ptp_device_properties_THETA[i].dpc==dpc)
+					return (ptp_device_properties_THETA[i].txt);
 			break;
 
 		case PTP_VENDOR_CANON:
