@@ -6,9 +6,22 @@ This is based on ptpcam.
 
 [Original project page](http://libptp.sourceforge.net/).
 
-## RICOH THETA Information
+## Modifications
 
-### Installation 
+* support for USB 3.0 SuperSpeed USB (SS), though it's not
+clear if the THETA Z1 USB3.0 implementation supports this speed - by 
+[nickel110](https://github.com/nickel110/libptp2)
+* support for video file transfer greater than 4GB - by 
+[nickel110](https://github.com/nickel110/libptp2)
+* autoconf version and configuration files updated to 
+make it easier to modify code on Ubuntu 20.04 and 18.04
+* some unused code for non-THETA cameras deleted to make the
+code easier to edit
+* PTP_VENDOR_THETA added with `0x00000006`, which was previously
+assigned to PTP_VENDOR_MICROSOFT
+
+
+## Installation 
 
 On Ubuntu 20.04 x86 and JetPack 4.4 NVIDIA Jetson.
 
@@ -42,7 +55,7 @@ $ sudo apt install automake
 ...
 ```
 
-### Test with RICOH THETA
+## Test with RICOH THETA
 
 Connect camera to computer with USB cable.  For most commands, the camera needs to be on,
 not in sleep mode.
