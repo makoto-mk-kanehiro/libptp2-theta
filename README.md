@@ -82,6 +82,18 @@ Model: RICOH THETA Z1
  theta --set-property=0xD80E --val=0x00
 ```
 
+You may need a delay.
+
+```
+theta --reset-delay=2000  --set-property=0xD80E --val=0
+```
+
+See [this](https://community.theta360.guide/t/ricoh-theta-api-over-usb-cable-z1-v-s-sc-models/65/127?u=craig) post if you are having problems putting the camera to sleep or waking it up from sleep.
+
+See [this](https://youtu.be/z-mYQY3zYt0) YouTube video on the modifications
+and testing.
+
+
 #### Put Camera in Still Image Mode
 
 ```
