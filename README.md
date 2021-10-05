@@ -19,6 +19,7 @@ make it easier to modify code on Ubuntu 20.04 and 18.04
 code easier to edit
 * PTP_VENDOR_THETA added with `0x00000006`, which was previously
 assigned to PTP_VENDOR_MICROSOFT
+* --reset-delay option to ptpcam to help THETA V wake from sleep - by [nickel110]
 
 
 ## Installation 
@@ -81,6 +82,18 @@ Model: RICOH THETA Z1
 ```
  theta --set-property=0xD80E --val=0x00
 ```
+
+You may need a delay.
+
+```
+theta --reset-delay=2000  --set-property=0xD80E --val=0
+```
+
+See [this](https://community.theta360.guide/t/ricoh-theta-api-over-usb-cable-z1-v-s-sc-models/65/127?u=craig) post if you are having problems putting the camera to sleep or waking it up from sleep.
+
+See [this](https://youtu.be/z-mYQY3zYt0) YouTube video on the modifications
+and testing.
+
 
 #### Put Camera in Still Image Mode
 
