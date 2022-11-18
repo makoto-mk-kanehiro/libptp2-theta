@@ -216,3 +216,12 @@ lrwxrwxrwx 1 root root     19 Nov 17 10:01 libusb-0.1.so.4 -> libusb-0.1.so.4.4.
 -rwxr-xr-x 1 root root    941 Nov 17 10:01 libusb.la
 lrwxrwxrwx 1 root root     19 Nov 17 10:01 libusb.so -> libusb-0.1.so.4.4.4
 ```
+
+## Community Discussion
+
+There are many discussions about the USB API on the .guide forum.
+
+For information on a test I did with the NVIDIA Jetson with Jetpack 4.6
+and libusb-1.0, see the topic below.  Please ask questions on the forum.
+
+* [NVIDIA Jetson and USB API for RICOH THETA](https://community.theta360.guide/t/nvidia-jetson-and-usb-api-for-ricoh-theta/8566?u=craig)
