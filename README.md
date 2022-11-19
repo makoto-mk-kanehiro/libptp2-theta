@@ -51,6 +51,7 @@ If the build fails, try the following.
 ```text
 $ autoreconf -i
 $ ./configure
+# if on Ubuntu 22.04 run aclocal prior to automake
 $ automake
 $ make
 
