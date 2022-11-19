@@ -1,5 +1,9 @@
 # libptp2 and ptpcam for RICOH THETA camera control with a USB cable
 
+You may want to consider [libgphoto2](https://github.com/codetricity/libgphoto2-theta) as it is a newer
+code base that is actively maintained.  libgphoto2 also does not require libusb-compat and will compile
+against libusb-1.0-0-dev.
+
 More information is [here](https://theta360.guide/special/linuxstreaming/).
 
 This is based on ptpcam.
