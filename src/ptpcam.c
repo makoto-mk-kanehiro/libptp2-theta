@@ -33,6 +33,7 @@
 #include <sys/mman.h>
 #include <usb.h>
 #include <stdint.h>
+#include <malloc/malloc.h>
 
 #ifdef ENABLE_NLS
 #  include <libintl.h>
@@ -1055,7 +1056,7 @@ send_generic_request (int busn, int devn, uint16_t reqCode, uint32_t *reqParams,
 			fprintf(stderr,"PTP: ERROR: response 0x%04x\n", result);
 	} else {
 	    if (data != NULL && direction == PTP_DP_GETDATA) {
-		    display_hexdump(data, malloc_usable_size ((void*)data));
+		    display_hexdump(data, malloc_size ((void*)data));
 			free(data);
 		}
 		printf("PTP: response OK\n");
